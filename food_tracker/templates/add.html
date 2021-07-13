@@ -50,7 +50,7 @@
 							</h3>
 							<hr />
 
-							<form action="" method="POST" role="form">
+							<form action="{{ url_for('main.add') }}" method="POST" role="form">
 							
 								<div class="row">
 									<div class="col-lg-4">
@@ -119,6 +119,8 @@
 									</tr>
 								</thead>
 								<tbody>
+									<!-- Loop over food database to display all of the foods listed -->
+									{% for food in foods %}
 									<tr>
 										<td>1</td><td>Burger</td><td>20</td>
 										<td>25</td><td>15</th><td>315</td>
@@ -131,18 +133,7 @@
 											</a> 
 										</td>
 									</tr>
-									<tr>
-										<td>1</td><td>Burger</td><td>20</td>
-										<td>25</td><td>15</th><td>315</td>
-										<td>
-											<a href="#" class="btn btn-default btn-xs">
-												<i class="glyphicon glyphicon-pencil"></i> Edit
-											</a> 
-											<a href="#" class="btn btn-danger btn-xs">
-												<i class="glyphicon glyphicon-trash"></i> Delete
-											</a> 
-										</td>
-									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>
