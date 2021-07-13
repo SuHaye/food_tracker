@@ -16,6 +16,12 @@ class Food(db.Model):
     carbs = db.Column(db.Integer, nullable=False)
     fats = db.Column(db.Integer, nullable=False)
 
+    # adds property that calculates the calories
+    @property
+    def calories(self):
+        # calculate calories
+        return self.proteins * 4 + self.carbs * 4 + self.fats * 9
+
 
 # Model for dates
 class Log(db.Model):
