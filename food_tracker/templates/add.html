@@ -56,19 +56,19 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label for="food-name">Food Name</label>
-						                  	<input type="text" class="form-control" id="food-name" name="food-name" placeholder="Food Name" autofocus>
+						                  	<input value="{{ food.name }}" type="text" class="form-control" id="food-name" name="food-name" placeholder="Food Name" autofocus>
 										</div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 						                  <label for="protein">Protein</label>
-						                  <input type="number" class="form-control" id="protein" name="protein" placeholder="Protein">
+						                  <input value="{{ food.proteins }}" type="number" class="form-control" id="protein" name="protein" placeholder="Protein">
 						                </div>
 									</div>
 									<div class="col-lg-4">
 										<div class="form-group">
 						                  <label for="carbohydrates">Carbohydrates</label>
-						                  <input type="number" class="form-control" id="carbohydrates" name="carbohydrates" placeholder="Carbohydrates">
+						                  <input value="{{ food.carbs }}" type="number" class="form-control" id="carbohydrates" name="carbohydrates" placeholder="Carbohydrates">
 						                </div>
 									</div>
 								</div>
@@ -77,13 +77,14 @@
 									<div class="col-lg-4">
 										<div class="form-group">
 						                  <label for="fat">Fat</label>
-						                  <input type="number" class="form-control" id="fat" name="fat" placeholder="Fat">
+						                  <input value="{{ food.fats }}" type="number" class="form-control" id="fat" name="fat" placeholder="Fat">
 						                </div>
 									</div>
 
 									<div class="col-lg-4">
 										<div class="form-group">
 											<label style="visibility:hidden">submit</label>
+											<input type="hidden" name="food-id" value="{{ food.id }}" >
 											<button type="submit" class="btn btn-primary btn-block">
 												<i class="glyphicon glyphicon-upload"></i> Submit
 											</button>
@@ -118,6 +119,7 @@
 										<th style="width: 20%;">Actions</th>
 									</tr>
 								</thead>
+
 								<tbody>
 									<!-- Loop over food database to display all of the foods listed -->
 									{% for food in foods %}
@@ -126,10 +128,11 @@
 										<td>{{ food.id }}</td><td>{{ food.name }}</td><td>{{ food.proteins }}</td>
 										<td>{{ food.carbs }}</td><td>{{ food.fats }}</th><td>{{ food.calories }}</td>
 										<td>
-											<a href="#" class="btn btn-default btn-xs">
+											<!-- Refers to delete method in routes.py -->
+											<a href="{{ url_for('main.edit_food', food_id=food.id) }}" class="btn btn-default btn-xs">
 												<i class="glyphicon glyphicon-pencil"></i> Edit
 											</a> 
-											<a href="#" class="btn btn-danger btn-xs">
+											<a href="{{ url_for('main.delete_food', food_id=food.id) }}" class="btn btn-danger btn-xs">
 												<i class="glyphicon glyphicon-trash"></i> Delete
 											</a> 
 										</td>
