@@ -28,4 +28,4 @@ class Log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
     # uses a model within a model
-    foods = db.relationship('Food', secondary=log_food)
+    foods = db.relationship('Food', secondary=log_food, lazy='dynamic')
