@@ -7,7 +7,6 @@ log_food = db.Table('log_food',
     db.Column('food_id', db.Integer, db.ForeignKey('food.id'), primary_key=True)
 )
 
-
 # Model for food and what values it'll have
 class Food(db.Model):
     id = db.Column(db.Integer, primary_key=True)

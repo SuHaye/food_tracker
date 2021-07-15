@@ -10,7 +10,31 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    logs = Log.query.order_by(Log.date.desc()).all()
+
+    log_dates = []
+    
+    for log in logs: # Calculates totals, outter loop over each log in database
+        proteins = 0
+        carbs = 0
+        fats = 0 
+        calories = 0 
+
+        for food in log.foods: #Loop over each food in the log and update values
+            proteins += food.proteins
+            carbs += food.carbs
+            fats += food.fats
+            calories += food.calories
+
+        log_dates.append({ #pin values to dictionary and send to 'log_dates' list
+            'log_date' : log,
+            'proteins' : proteins,
+            'carbs' : carbs,
+            'fats' : fats,
+            'calories' : calories
+        })
+
+    return render_template('index.html', log_dates=log_dates)
 
 @main.route('/create_log', methods=['POST'])
 def create_log():
@@ -92,7 +116,22 @@ def view(log_id):
     # Grabbing data values to display on html pages
     log = Log.query.get_or_404(log_id)
     foods = Food.query.all()
-    return render_template('view.html', foods=foods, log=log)
+
+    # Calculate total macro/micronutrients for the selected day
+    totals = {
+        'protein' : 0,
+        'carbs' : 0,
+        'fats' : 0,
+        'calories' : 0
+    }
+    
+    for food in log.foods:
+        totals['protein'] += food.proteins # '+=' updates values
+        totals['carbs'] += food.carbs
+        totals['fats'] += food.fats
+        totals['calories'] += food.calories
+
+    return render_template('view.html', foods=foods, log=log, totals=totals)
 
 
 @main.route('/add_food_to_log/<int:log_id>', methods=['POST'])
@@ -103,6 +142,18 @@ def add_food_to_log(log_id):
     food = Food.query.get_or_404(int(selected_food)) # Queries equivilent food to the food_id
     
     log.foods.append(food) # Adds selected food to log model in database
+    db.session.commit()
+
+    return redirect(url_for('main.view', log_id=log_id))
+
+
+
+@main.route('/remove_food_from_log/<int:log_id>/<int:food_id>')
+def remove_food_from_log(log_id, food_id):
+    log = Log.query.get(log_id)
+    food = Food.query.get(food_id)
+    # Removes food from database
+    log.foods.remove(food)
     db.session.commit()
 
     return redirect(url_for('main.view', log_id=log_id))
