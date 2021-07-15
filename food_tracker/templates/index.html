@@ -84,6 +84,9 @@
 							<a class="btn btn-primary btn-xs pull-right" href="{{ url_for('main.view', log_id=log_date['log_date'].id) }}">
 								View <i class="glyphicon glyphicon-arrow-right"></i>
 							</a>
+							<a href="{{ url_for('main.delete_log', log_id=log_date['log_date'].id) }}" class="btn btn-danger btn-xs">
+								<i class="glyphicon glyphicon-trash"></i> Delete
+							</a> 
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item text-bold"><span class="badge">{{ log_date['proteins'] }}</span> Protein</li>

@@ -101,6 +101,14 @@ def delete_food(food_id):
 
     return redirect(url_for('main.add'))
 
+@main.route('/delete_log/<int:log_id>')
+def delete_log(log_id):
+    log = Log.query.get_or_404(log_id)
+    db.session.delete(log)
+    db.session.commit()
+
+    return redirect(url_for('main.index', log=log))
+
 
 @main.route('/edit_food/<int:food_id>')
 def edit_food(food_id):
