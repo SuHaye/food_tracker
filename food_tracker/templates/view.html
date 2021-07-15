@@ -118,7 +118,7 @@
 								<tbody>
 									{% for food in log.foods %}
 									<tr>
-										<td>1</td><td>{{ food.name }}</td><td>{{ food.proteins}}</td>
+										<td>{{ loop.index }}</td><td>{{ food.name }}</td><td>{{ food.proteins}}</td>
 										<td>{{ food.carbs }}</td><td>{{ food.fats }}</th><td>{{ food.calories }}</td>
 										<td>
 											<a href="#" class="btn btn-danger btn-xs">
