@@ -18,7 +18,7 @@
 	</head>
 	<body>
 
-		<div class="container-fluid" id="wrapper">
+		<div class="bg-gray-300 pt-10 h-screen" id="wrapper">
 			
 			<div 
 				style="background-image: url('../static/img/hero.jpg');" 
@@ -42,34 +42,56 @@
 				</div>
 			</div>
 
-			<div class="row t20">
-				<div class="col-lg-4 col-lg-offset-4">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<form action="{{ url_for('main.add_food_to_log', log_id=log.id) }}" method="POST" role="form">
-							
-								<div class="form-group">
-									<label>Add Food</label>
-									<div class="input-group">
-									  <select class="form-control" name="food-select">
-										  <!-- Loop though food list in database  -->
-										  {% for food in foods %}      
-					                        <option value="{{ food.id }}">{{ food.name }}</option>
-										  {% endfor %}
-					                    </select>
-									  <span class="input-group-btn">
-										<button type="submit" class="btn btn-primary" id="add-btn">
-										  <i class="glyphicon glyphicon-plus-sign"></i> Add Food
-										</button>
-									  </span>
-									</div>
+			<div class="container mx-auto">
+				<form action="{{ url_for('main.add_food_to_log', log_id=log.id) }}" method="POST" role="form">
+					<div class="px-10 container mx-auto text-lg">
+						<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
+							<div class="px-2 flex flex-col items-center">
+								<label class="underline text-2xl mb-5">Add Food</label>
+
+								<div class="">
+									<select class="text-xl cursor-pointer px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" name="food-select">
+										<!-- Loop though food list in database  -->
+										{% for food in foods %}      
+										<option value="{{ food.id }}">{{ food.name }}</option>
+										{% endfor %}
+									</select>
+									<span class="">
+									<button 
+										type="submit" 
+										class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white" 
+										id="add-btn">
+										Add Food
+									</button>
+									</span>
 								</div>
+							</div>
+						</div>
+					</div>	
+				</form>	
+			</div>
+
+			<!-- <div class="conatiner">
+				<form action="{{ url_for('main.create_log') }}" method="POST" role="form">
+					<div class="px-10 container mx-auto text-lg">
+						<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
 							
-							</form>	
+							<div class="px-2 flex flex-col items-center">
+								<label class="underline text-2xl mb-5"> Add New Date</label>
+								<div class="">
+
+									<input type="date" name="date" class="cursor-pointer px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" placeholder="Select New Date">
+									<span class="">
+										<button type="submit" class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white" id="add-btn">
+											Add Date
+										</button>
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</form>	
+			</div> -->
 
 			<div class="row t20">
 				<div class="col-lg-8 col-lg-offset-2">
