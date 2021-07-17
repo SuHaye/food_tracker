@@ -22,7 +22,7 @@
 			
 			<div 
 				style="background-image: url('../static/img/hero.jpg');" 
-				class="relative bg-cover bg-center my-10 text-center shadow-lg" >
+				class="relative bg-cover bg-center text-center shadow-lg" >
 				<!-- overlay -->
 				<div class="absolute top-0 bg-black opacity-50 w-full h-full"></div>
 				<div class="relative">
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 
-			<div class="container mx-auto">
+			<div class="container mx-auto my-10">
 				<form action="{{ url_for('main.add_food_to_log', log_id=log.id) }}" method="POST" role="form">
 					<div class="px-10 container mx-auto text-lg">
 						<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
@@ -71,91 +71,89 @@
 				</form>	
 			</div>
 
-			<!-- <div class="conatiner">
-				<form action="{{ url_for('main.create_log') }}" method="POST" role="form">
-					<div class="px-10 container mx-auto text-lg">
-						<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
-							
-							<div class="px-2 flex flex-col items-center">
-								<label class="underline text-2xl mb-5"> Add New Date</label>
-								<div class="">
+			<div class="container mx-auto my-20">
+				<div class="bg-white pt-5">
+					<div class="ml-2 mr-10">
+						<h3 class="font-semibold text-3xl">
+							{{ log.date.strftime('%B %d, %Y') }}
+						</h3>
 
-									<input type="date" name="date" class="cursor-pointer px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" placeholder="Select New Date">
-									<span class="">
-										<button type="submit" class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white" id="add-btn">
-											Add Date
-										</button>
-									</span>
-								</div>
+						<div class="flex justify-between my-3">
+							<div class="">
+								<h4 class="text-lg">
+									Protein: 
+									<strong 
+										class="text-2xl">{{ totals['protein'] }}
+									</strong>
+								</h4>
+							</div>
+							<div class="">
+								<h4 class="text-lg">
+									Carbohydrates: 
+									<strong 
+										class="text-2xl">{{ totals['carbs'] }}
+									</strong>
+								</h4>
+							</div>
+							<div class="">
+								<h4 class="text-lg">
+									Fat: 
+									<strong 
+										class="text-2xl">{{ totals['fats'] }}
+									</strong>
+								</h4>
+							</div>
+							<div class="">
+								<h4 class="text-lg">
+									Calories: 
+									<strong 
+										class="text-2xl">{{ totals['calories'] }}
+									</strong>
+								</h4>
 							</div>
 						</div>
 					</div>
-				</form>	
-			</div> -->
 
-			<div class="row t20">
-				<div class="col-lg-8 col-lg-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3 class="lean-h text-black">
-								<i class="glyphicon glyphicon-calendar"></i> {{ log.date.strftime('%B %d, %Y') }}
-							</h3>
-
-							<div class="row">
-								<div class="col-lg-3">
-									<h4 class="lean-h">
-										Protein: &nbsp;<strong class="f25">{{ totals['protein'] }}</strong>
-									</h4>
-								</div>
-								<div class="col-lg-3">
-									<h4 class="lean-h">
-										Carbohydrates: <strong class="f25">{{ totals['carbs'] }}</strong>
-									</h4>
-								</div>
-								<div class="col-lg-3">
-									<h4 class="lean-h">
-										Fat: <strong class="f25">{{ totals['fats'] }}</strong>
-									</h4>
-								</div>
-								<div class="col-lg-3">
-									<h4 class="lean-h">
-										Calories: <strong class="f25">{{ totals['calories'] }}</strong>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="table-responsive">
-							<table class="table table-striped table-hover table-bordered">
-								<thead>
-									<tr>
-										<th style="width: 5%;">#</th>
-										<th>Name</th>
-										<th style="width: 10%;">Protein</th>
-										<th style="width: 16%;">Carbohydrates</th>
-										<th style="width: 10%;">Fat</th>
-										<th style="width: 12%;">Calories</th>
-										<th style="width: 20%;">Actions</th>
+					
+					<div class="">
+						<table class="table-auto w-full">
+							<div class="">
+								<thead  class="">
+									<tr class="text-left">
+										<th class="border-l-0 border-2 border-gray-300 pl-2 py-1">#</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Name</th>
+										<th class="border-2 border-gray-300 pl-2 py-1" >Protein</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Carbohydrates</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Fat</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Calories</th>
+										<th class="border-r-0 border-2 border-gray-300 pl-2 py-1">Actions</th>
 									</tr>
 								</thead>
-								<tbody>
-									{% for food in log.foods %}
-									<tr>
-										<td>{{ loop.index }}</td><td>{{ food.name }}</td><td>{{ food.proteins}}</td>
-										<td>{{ food.carbs }}</td><td>{{ food.fats }}</th><td>{{ food.calories }}</td>
-										<td>
-											<a href="{{ url_for('main.remove_food_from_log', log_id=log.id, food_id=food.id) }}" class="btn btn-danger btn-xs">
-												<i class="glyphicon glyphicon-trash"></i> Delete
-											</a> 
-										</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
+							</div>
+							
+							<tbody>
+								{% for food in log.foods %}
+								<tr class="text-left">
+									<td class="border-l-0 border-2 border-gray-300 pl-2 py-1">{{ loop.index }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.name }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.proteins}}</td>
+									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.carbs }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.fats }}</th>
+									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.calories }}</td>
+									<td class="border-r-0 border-2 border-gray-300 pl-2 py-1">
+										<a 
+											class="py-1 px-3 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white"
+											href="{{ url_for('main.remove_food_from_log', log_id=log.id, food_id=food.id) }}">
+											Delete
+										</a> 
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 	</body>
