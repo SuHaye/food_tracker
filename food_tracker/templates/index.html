@@ -12,24 +12,24 @@
 	</head>
 	<body>
 
-		<div class="">
-			<div class="">
-				<div class=""></div>
-				<div class="">
-					<h1>
-						<a href="{{ url_for('main.index') }}">FOOD TRACKER</a>
-					</h1>
-					
-					<div class="">
-						<div class="">
-							<ul class="">
-							  <li role="presentation" class="active">
-							  	<a href="{{ url_for('main.index') }}" title="Home">Home</a>
-							  </li>
-							  <li role="presentation">
-							  	<a href="{{ url_for('main.add') }}" title="Add Food Item">Add Food Item</a>
-							  </li>
-							</ul>
+		<div class="bg-gray-300">
+			<div 
+				style="background-image: url('../static/img/hero.jpg');" 
+				class="relative bg-cover bg-center my-10 text-center shadow-lg" >
+				<!-- overlay -->
+				<div class="absolute top-0 bg-black opacity-50 w-full h-full"></div>
+				<div class="relative">
+					<div class="flex flex-col p-10">
+						<h1 class="font-bold text-5xl text-white tracking-widest hover:text-gray-300">
+							<a href="{{ url_for('main.index') }}">FOOD TRACKER</a>
+						</h1>
+						<div class="h-full mx-auto flex align-middle font-semibold text-white text-xl mt-5">
+							<div class="p-5 w-72">
+								<a class="px-2 hover:underline hover:text-gray-300" href="{{ url_for('main.index') }}" title="Home">Home</a>
+							</div>
+							<div class="p-5 w-72">
+								<a class="px-2 hover:underline hover:text-gray-300" href="{{ url_for('main.add') }}" title="Add Food Item">Add Foods</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -92,15 +92,6 @@
 				{% endfor %}
 			</div>
 			{% endfor %}
-
-			<footer>
-				<div class="row pad">
-					<div class="col-lg-12 text-center">
-						Copyright &copy; 2017 <strong>Food Tracker</strong>
-					</div>
-				</div>
-			</footer>
-
 		</div>
 
 	</body>
