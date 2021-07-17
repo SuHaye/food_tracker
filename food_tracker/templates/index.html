@@ -12,7 +12,7 @@
 	</head>
 	<body>
 
-		<div class="bg-gray-300 pt-10">
+		<div class="bg-gray-300 pt-10 h-max-screen">
 			<div 
 				style="background-image: url('../static/img/hero.jpg');" 
 				class="relative bg-cover bg-center mb-10 text-center shadow-lg" >
@@ -38,7 +38,7 @@
 			<div class="conatiner">
 				<form action="{{ url_for('main.create_log') }}" method="POST" role="form">
 					<div class="px-10 container mx-auto text-lg">
-						<div class="mx-auto py-5 px-5 bg-white rounded-md w-3/5">
+						<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
 							<div class="px-2 flex flex-col items-center">
 								<label class="underline text-2xl mb-5"> Add New Date</label>
 								<div class="">
@@ -62,27 +62,43 @@
 
 
 			{% for row in log_dates|batch(4) %}
-			<div class="row">
+			<div class="mx-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
 				{% for log_date in row %}
-				<div class="col">
-					<div class="">
-						<div class="">
-							<i class=""></i> {{ log_date['log_date'].date.strftime('%B %d, %Y') }} 
-
-							<a class="" href="{{ url_for('main.view', log_id=log_date['log_date'].id) }}">
+				<div class="bg-white p-5 m-5 rounded hover:shadow-lg shadow-md">
+					<div class="font-semibold flex justify-between">
+						 {{ log_date['log_date'].date.strftime('%B %d, %Y') }} 
+						<div class="font-normal">
+							<a
+								href="{{ url_for('main.view', log_id=log_date['log_date'].id) }}"
+								class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white">
 								View 
 							</a>
-							<a href="{{ url_for('main.delete_log', log_id=log_date['log_date'].id) }}" class="">
-							 Delete
+							<a 
+								href="{{ url_for('main.delete_log', log_id=log_date['log_date'].id) }}"
+								class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white">
+								Delete
 							</a> 
 						</div>
-						<ul class="list-group">
-							<li class=""><span class="">{{ log_date['proteins'] }}</span> Protein</li>
-							<li class=""><span class="">{{ log_date['carbs'] }}</span> Carbohydrate</li>
-							<li class=""><span class="">{{ log_date['fats'] }}</span> Fat</li>
-							<li class=""><span class="">{{ log_date['calories'] }}</span> Calories</li>
-						</ul>
 					</div>
+					<ul class="mt-5">
+						<li class="flex flex-row-reverse justify-between">
+							<span class="">{{ log_date['proteins'] }}(g)</span> 
+							Protein
+						</li>
+						<li class="flex flex-row-reverse justify-between">
+							<span class="">{{ log_date['carbs'] }}(g)</span> 
+							Carbohydrate
+						</li>
+						<li class="flex flex-row-reverse justify-between">
+							<span class="">{{ log_date['fats'] }}(g)</span> 
+							Fat
+						</li>
+						<hr class="my-2">
+						<li class="flex flex-row-reverse justify-between">
+							<span class="">{{ log_date['calories'] }}</span> 
+							Calories
+						</li>
+					</ul>
 				</div>
 				{% endfor %}
 			</div>
