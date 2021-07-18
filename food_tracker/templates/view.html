@@ -83,7 +83,7 @@
 								<h4 class="text-lg">
 									Protein: 
 									<strong 
-										class="text-2xl">{{ totals['protein'] }}
+										class="text-2xl">{{ totals['protein'] }} (g)
 									</strong>
 								</h4>
 							</div>
@@ -91,7 +91,7 @@
 								<h4 class="text-lg">
 									Carbohydrates: 
 									<strong 
-										class="text-2xl">{{ totals['carbs'] }}
+										class="text-2xl">{{ totals['carbs'] }} (g)
 									</strong>
 								</h4>
 							</div>
@@ -99,7 +99,7 @@
 								<h4 class="text-lg">
 									Fat: 
 									<strong 
-										class="text-2xl">{{ totals['fats'] }}
+										class="text-2xl">{{ totals['fats'] }} (g)
 									</strong>
 								</h4>
 							</div>
@@ -122,9 +122,9 @@
 									<tr class="text-left">
 										<th class="border-l-0 border-2 border-gray-300 pl-2 py-1">#</th>
 										<th class="border-2 border-gray-300 pl-2 py-1">Name</th>
-										<th class="border-2 border-gray-300 pl-2 py-1" >Protein</th>
-										<th class="border-2 border-gray-300 pl-2 py-1">Carbohydrates</th>
-										<th class="border-2 border-gray-300 pl-2 py-1">Fat</th>
+										<th class="border-2 border-gray-300 pl-2 py-1" >Protein (g)</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Carbohydrates (g)</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Fat (g)</th>
 										<th class="border-2 border-gray-300 pl-2 py-1">Calories</th>
 										<th class="border-r-0 border-2 border-gray-300 pl-2 py-1">Actions</th>
 									</tr>
@@ -136,9 +136,9 @@
 								<tr class="text-left">
 									<td class="border-l-0 border-2 border-gray-300 pl-2 py-2">{{ loop.index }}</td>
 									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.name }}</td>
-									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.proteins}}</td>
-									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.carbs }}</td>
-									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.fats }}</th>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.proteins}} (g)</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.carbs }} (g)</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.fats }} (g)</th>
 									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.calories }}</td>
 									<td class="border-r-0 border-2 border-gray-300 pl-2 py-2">
 										<a 

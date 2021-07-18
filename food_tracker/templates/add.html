@@ -18,7 +18,7 @@
 	</head>
 	<body>
 
-		<div class="bg-gray-300 pt-10 h-screen" id="wrapper">
+		<div class="bg-gray-300 pt-10 h-full" id="wrapper">
 			
 			<div 
 				style="background-image: url('../static/img/hero.jpg');" 
@@ -42,27 +42,6 @@
 				</div>
 			</div>
 
-			<!-- <div class="container mx-auto my-10">
-				<form action="
-					<div class="px-10 container mx-auto text-lg">
-	<div class="mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
-		<div class="px-2 flex flex-col items-center">
-			<label class="underline text-2xl mb-5">Add Food</label>
-
-			<div class="">
-				<select class="text-xl cursor-pointer px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" name="food-select">
-					{% for food in foods %}      
-					<option value="{{ food.id }}">{{ food.name }}</option>
-					{% endfor %}
-				</select>
-				<span class="">
-				<button 
-					type="submit" 
-					class="py-1 px-2 ml-5 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white" 
-					id="add-btn">
-					Add Food
-				</button> -->
-
 			<div class="container mx-auto my-10">
 				<div class="px-10 container mx-auto">
 					<div class="flex flex-col items-center mx-auto py-5 px-5 bg-white hover:shadow-lg shadow-md rounded-md w-3/5">
@@ -76,20 +55,20 @@
 						<div class="flex flex-col space-y-2">
 							<div class="flex flex-col space-y-3">
 								<div class="flex justify-between text-xl ">
-									<label class="mr-5" for="">Food Name</label>
+									<label class="mr-5" for="">Food Name:</label>
 									<input value="{{ food.name }}" type="text" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="food-name" name="food-name" placeholder="Food Name" autofocus>
 								</div>
 								<div class="flex justify-between text-xl">
 									<label class="mr-5" for="protein">Protein</label>
-									<input value="{{ food.proteins }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="protein" name="protein" placeholder="Protein">
+									<input value="{{ food.proteins }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="protein" name="protein" placeholder="Protein(g)">
 								</div>
 								<div class="flex justify-between text-xl">
 									<label class="mr-5" for="carbohydrates">Carbohydrates</label>
-									<input value="{{ food.carbs }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="carbohydrates" name="carbohydrates" placeholder="Carbohydrates">
+									<input value="{{ food.carbs }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="carbohydrates" name="carbohydrates" placeholder="Carbohydrates(g)">
 								</div>
 								<div class="flex justify-between text-xl">
 									<label class="mr-5" for="fat">Fat</label>
-									<input value="{{ food.fats }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="fat" name="fat" placeholder="Fat">
+									<input value="{{ food.fats }}" type="number" class="text-xl px-2 bg-gray-200 shadow-md hover:shadow-lg focus:outline-none w-64" id="fat" name="fat" placeholder="Fat(g)">
 								</div>
 							</div>		
 							<div class="text-xl">
@@ -105,51 +84,56 @@
 				</div>	
 			</div>
 			
-			
-			<div class="row t20">
-				<div class="col-lg-8 col-lg-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h4 class="lean-h text-black">
-								<i class="glyphicon glyphicon-th-list"></i> Existing Food Items
+			<div class="container mx-auto mt-20 pb-20">
+				<div class="bg-white pt-5">
+					<div class="">
+						<div class="">
+							<h4 class="font-semibold text-3xl mb-5 ml-2">
+								Existing Food Items:
 							</h4>
 						</div>
-						<div class="table-responsive">
-							<table class="table table-striped table-hover table-bordered">
+						<div class="">
+							<table class="table-auto w-full">
 								<thead>
-									<tr>
-										<th style="width: 5%;">#</th>
-										<th>Name</th>
-										<th style="width: 10%;">Protein</th>
-										<th style="width: 16%;">Carbohydrates</th>
-										<th style="width: 10%;">Fat</th>
-										<th style="width: 12%;">Calories</th>
-										<th style="width: 20%;">Actions</th>
+									<tr class="text-left">
+										<th class="border-l-0 border-2 border-gray-300 pl-2 py-1" >#</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Name</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Protein</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Carbohydrates</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Fat</th>
+										<th class="border-2 border-gray-300 pl-2 py-1">Calories</th>
+										<th class="border-r-0 border-2 border-gray-300 pl-2 py-1" >Actions</th>
 									</tr>
 								</thead>
 
 								<tbody>
 									<!-- Loop over food database to display all of the foods listed -->
 									{% for food in foods %}
-									<tr>
+									<tr class="text-left">
 										<!-- Grabs data from the database and creates a row -->
-										<td>{{ food.id }}</td><td>{{ food.name }}</td><td>{{ food.proteins }}</td>
-										<td>{{ food.carbs }}</td><td>{{ food.fats }}</th><td>{{ food.calories }}</td>
-										<td>
+										<td class="border-l-0 border-2 border-gray-300 pl-2 py-2">{{ food.id }}</td>
+										<td class="border-2 border-gray-300 pl-2 py-2">{{ food.name }}</td>
+										<td class="border-2 border-gray-300 pl-2 py-2">{{ food.proteins }} (g)</td>
+										<td class="border-2 border-gray-300 pl-2 py-2">{{ food.carbs }} (g)</td>
+										<td class="border-2 border-gray-300 pl-2 py-2">{{ food.fats }} (g)</th>
+										<td class="border-2 border-gray-300 pl-2 py-2">{{ food.calories }}</td>
+										<td class="border-r-0 border-2 border-gray-300 pl-2 py-2">
 											<!-- Refers to delete method in routes.py -->
-											<a href="{{ url_for('main.edit_food', food_id=food.id) }}" class="btn btn-default btn-xs">
-												<i class="glyphicon glyphicon-pencil"></i> Edit
+											<a 
+												class="mr-3 py-1 px-5 bg-gray-500 rounded-md hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white"
+												href="{{ url_for('main.edit_food', food_id=food.id) }}">
+												Edit
 											</a> 
-											<a href="{{ url_for('main.delete_food', food_id=food.id) }}" class="btn btn-danger btn-xs">
-												<i class="glyphicon glyphicon-trash"></i> Delete
+											<a 
+												class="py-1 px-3 bg-gray-500 rounded-md hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white"
+												href="{{ url_for('main.delete_food', food_id=food.id) }}">
+												Delete
 											</a> 
 										</td>
 									</tr>
 									{% endfor %}
 								</tbody>
 							</table>
-
-							
 						</div>
 					</div>
 				</div>
