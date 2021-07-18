@@ -134,15 +134,15 @@
 							<tbody>
 								{% for food in log.foods %}
 								<tr class="text-left">
-									<td class="border-l-0 border-2 border-gray-300 pl-2 py-1">{{ loop.index }}</td>
-									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.name }}</td>
-									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.proteins}}</td>
-									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.carbs }}</td>
-									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.fats }}</th>
-									<td class="border-2 border-gray-300 pl-2 py-1">{{ food.calories }}</td>
-									<td class="border-r-0 border-2 border-gray-300 pl-2 py-1">
+									<td class="border-l-0 border-2 border-gray-300 pl-2 py-2">{{ loop.index }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.name }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.proteins}}</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.carbs }}</td>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.fats }}</th>
+									<td class="border-2 border-gray-300 pl-2 py-2">{{ food.calories }}</td>
+									<td class="border-r-0 border-2 border-gray-300 pl-2 py-2">
 										<a 
-											class="py-1 px-3 bg-gray-500 rounded-lg hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white"
+											class="py-1 px-3 bg-gray-500 rounded-md hover:underline hover:text-gray-300 shadow-mg hover:shadow-lg text-white"
 											href="{{ url_for('main.remove_food_from_log', log_id=log.id, food_id=food.id) }}">
 											Delete
 										</a> 
